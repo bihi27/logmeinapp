@@ -14,6 +14,7 @@ import {FormsModule} from '@angular/forms';
 import {CartItemNumberService} from './cart-item-number.service';
 
 const appRoutes: Routes = [
+  {path: '', component: SearchResultsComponent},
   {path: 'results', component: SearchResultsComponent},
   {path: 'details', component: BookDetailsComponent},
   {path: 'cart', component: CartComponent}
