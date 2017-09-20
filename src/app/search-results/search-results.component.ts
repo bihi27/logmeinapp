@@ -23,7 +23,7 @@ export class SearchResultsComponent implements OnInit {
 
   getSearchResults() {
     this.http.get('https://www.googleapis.com/books/v1/volumes?q=intitle:'
-    + this.searchQuery + '&key=AIzaSyDvavdq0tujZSNeBjHM4YvuV_2Vr1JAj8A')
+      + this.searchQuery + '&key=AIzaSyDvavdq0tujZSNeBjHM4YvuV_2Vr1JAj8A')
       .subscribe((respose: Response) => {
           const result = respose.json();
           this.results = [];

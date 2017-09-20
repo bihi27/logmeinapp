@@ -2,7 +2,10 @@
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
       <p>
-        <button class="btn btn-primary" (click)="removeAllItem();">Kosár kiürítése</button>
+        <button class="btn btn-primary"
+                (click)="removeAllItem();"
+                [disabled]="!items.length">Kosár kiürítése
+        </button>
       </p>
       <app-search-result *ngFor="let item of items">
         <div class="row resultItem">

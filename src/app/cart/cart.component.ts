@@ -22,7 +22,7 @@ export class CartComponent implements OnInit {
     if (booksInCart != null) {
       for (let i = 0; i < booksInCart.length; i++) {
         this.http.get('https://www.googleapis.com/books/v1/volumes/'
-        + booksInCart[i] + '?key=AIzaSyDvavdq0tujZSNeBjHM4YvuV_2Vr1JAj8A')
+          + booksInCart[i] + '?key=AIzaSyDvavdq0tujZSNeBjHM4YvuV_2Vr1JAj8A')
           .subscribe((response: Response) => {
               const data = response.json();
               this.items.push(data);
