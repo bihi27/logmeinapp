@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <div class="row resultItem">
+        <div *ngFor="let bookDetail of bookDetails">
+          <div class="col-lg-2">
+            <img *ngIf="bookDetail.volumeInfo.hasOwnProperty('imageLinks'); else noThumbnail"
+                 src="{{bookDetail.volumeInfo.imageLinks.thumbnail}}" class="img-thumbnail img-responsive"/>
+            <ng-template #noThumbnail>
+              <img src="https://books.google.hu/googlebooks/images/no_cover_thumb.gif"
+                   class="img-thumbnail img-responsive">
+            </ng-template>
+          </div>
+          <div class="col-lg-10">
+            <h1 *ngIf="bookDetail.volumeInfo.hasOwnProperty('title')">
+              <small>
+                {{bookDetail.volumeInfo.title}}
+              </small>
+            </h1>
+            <h2 *ngIf="bookDetail.volumeInfo.hasOwnProperty('publishedDate')">
+              <small>
+                <mark *ngIf="bookDetail.volumeInfo.hasOwnProperty('authors'); else anonymus">
+                  {{bookDetail.volumeInfo.authors}}
+                </mark>
+                <ng-template #anonymus>Anonymus</ng-template>
+                -
+                <span
+                  *ngIf="bookDetail.volumeInfo.hasOwnProperty('publishedDate')">{{bookDetail.volumeInfo.publishedDate}}</span>
+              </small>
+            </h2>
+            <blockquote *ngIf="bookDetail.volumeInfo.hasOwnProperty('description'); else noTextSnippet">
+              {{bookDetail.volumeInfo.description}}
+            </blockquote>
+            <ng-template #noTextSnippet>
+              <blockquote>
+
+              </blockquote>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

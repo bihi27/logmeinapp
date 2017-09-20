@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <p>
+        <input type="search" class="form-control" placeholder="Könyv kereső" name="search"
+               (keyup.enter)="getSearchResults()" [(ngModel)]="searchQuery"/>
+      </p>
+      <app-search-result *ngFor="let result of results">
+        <div class="row resultItem">
+          <div class="col-lg-2">
+            <img *ngIf="result.volumeInfo.hasOwnProperty('imageLinks'); else noThumbnail"
+                 src="{{result.volumeInfo.imageLinks.thumbnail}}" class="img-thumbnail img-responsive"/>
+            <ng-template #noThumbnail>
+              <img src="https://books.google.hu/googlebooks/images/no_cover_thumb.gif"
+                   class="img-thumbnail img-responsive">
+            </ng-template>
+          </div>
+          <div class="col-lg-10">
+            <h1 *ngIf="result.volumeInfo.hasOwnProperty('title')">
+              <small>
+                <a (click)="onLoadBookdetails(result.id)">
+                  {{result.volumeInfo.title}}
+                </a>
+              </small>
+              <button class="btn btn-default" (click)="addToCart(result.id)"><span
+                class="glyphicon glyphicon-shopping-cart"></span></button>
+            </h1>
+            <blockquote class="small" *ngIf="result.hasOwnProperty('searchInfo'); else noTextSnippet">
+              {{result.searchInfo.textSnippet}}
+            </blockquote>
+            <ng-template #noTextSnippet>
+              <blockquote>
+
+              </blockquote>
+            </ng-template>
+          </div>
+        </div>
+      </app-search-result>
+    </div>
+  </div>
+</div>
